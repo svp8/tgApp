@@ -13,14 +13,16 @@ import TheWelcome from './components/TheWelcome.vue'
   </header>
 
   <main>
-    <TheWelcome />
+    <p>Wallet</p>
+    <div id="ton-connect"></div>
+
   </main>
 </template>
 
 <style scoped>
 header {
   line-height: 1.5;
-  
+
 }
 
 .logo {
