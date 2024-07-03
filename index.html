@@ -15,6 +15,7 @@
   <script type="module" src="/src/main.js"></script> -->
   <div id="ton-connect"></div>
   <button onclick="sendTransaction()">Send transaction</button>
+  <button onclick="exit()">exit</button>
   <script>
     const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
       manifestUrl: 'https://svp8.github.io/tgApp/tonconnect-manifest.json',
@@ -37,6 +38,9 @@
       }
 
       const result = await tonConnectUI.sendTransaction(transaction)
+    }
+    async function exit(){
+      await tonConnectUI.disconnect();
     }
     // Call the function
     // connectToWallet().catch(error => {
