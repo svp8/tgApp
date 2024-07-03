@@ -1,34 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/tgApp/favicon.ico">
-    <link href="data:application/json;base64,ewogICAgInVybCI6ICJodHRwczovL3N2cDguZ2l0aHViLmlvL3RnQXBwIiwKICAgICJuYW1lIjogIlRPTiBWb3RlIiwKICAgICJpY29uVXJsIjogImh0dHBzOi8vdG9uLnZvdGUvbG9nby5wbmciCn0=">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite App</title>
-    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
-    <script type="module" crossorigin src="/tgApp/assets/index-Cb5A0d9J.js"></script>
-    <link rel="stylesheet" crossorigin href="/tgApp/assets/index-D-65FkAH.css">
-  </head>
-  <body>
-    <div id="app"></div>
-    <div id="ton-connect"></div>
-    <script>
-      const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
-          manifestUrl: 'https://svp8.github.io/tgApp/tonconnect-manifest.json',
-          buttonRootId: 'ton-connect'
-      });
 
-      async function connectToWallet() {
-        const connectedWallet = await tonConnectUI.connectWallet();
-        // Do something with connectedWallet if needed
-        console.log(connectedWallet);
-    }
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/tgApp/favicon.ico">
+  <link href="data:application/json;base64,ewogICAgInVybCI6ICJodHRwczovL3N2cDguZ2l0aHViLmlvL3RnQXBwIiwKICAgICJuYW1lIjogIlRPTiBWb3RlIiwKICAgICJpY29uVXJsIjogImh0dHBzOi8vdG9uLnZvdGUvbG9nby5wbmciCn0=">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vite App</title>
+  <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+</head>
 
-    // Call the function
-    connectToWallet().catch(error => {
-        console.error("Error connecting to wallet:", error);
+<body>
+  <!-- <div id="app"></div>
+  <script type="module" src="/src/main.js"></script> -->
+  <div id="ton-connect"></div>
+  <button onclick="sendTransaction()">Send transaction</button>
+  <script>
+    const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+      manifestUrl: 'https://svp8.github.io/tgApp/tonconnect-manifest.json',
+      buttonRootId: 'ton-connect'
     });
+
+    async function connectToWallet() {
+      const connectedWallet = await tonConnectUI.connectWallet();
+      // Do something with connectedWallet if needed
+      console.log(connectedWallet);
+    }
+    async function sendTransaction() {
+      const transaction = {
+        messages: [
+          {
+            address: "0:412410771DA82CBA306A55FA9E0D43C9D245E38133CB58F1457DFB8D5CD8892F", // destination address
+            amount: "20000000" //Toncoin in nanotons
+          }
+        ]
+      }
+
+      const result = await tonConnectUI.sendTransaction(transaction)
+    }
+    // Call the function
+    // connectToWallet().catch(error => {
+    //     console.error("Error connecting to wallet:", error);
+    // });
   </script>
-  </body>
+</body>
+
 </html>
