@@ -23,6 +23,29 @@
       buttonRootId: 'ton-connect'
     });
     console.log(window.Telegram.WebApp)
+    if (window.Telegram.WebApp.initData) {
+      const initDataRaw = decodeURIComponent(window.Telegram.WebApp.initData).split("&")
+      let initData = {}
+      for (let i in initDataRaw) {
+        // initData[initDataRaw[i].split("=")[0]] = initDataRaw[i].split("=")[1]
+        switch (initDataRaw[i].split("=")[0]) {
+          case 'query_id':
+            initData.query_id = initDataRaw[i].split("=")[1]
+            break
+          case 'user':
+            initData.user = initDataRaw[i].split("=")[1]
+            break
+          case 'auth_date':
+            initData.auth_date = parseInt(initDataRaw[i].split("=")[1])
+            break
+          case 'hash':
+            initData.hash = initDataRaw[i].split("=")[1]
+            break
+        }
+        console.log(initData.user);
+      }
+    }
+
     async function connectToWallet() {
       const connectedWallet = await tonConnectUI.connectWallet();
       // Do something with connectedWallet if needed
