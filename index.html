@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vite App</title>
   <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 
 <body>
@@ -21,7 +22,7 @@
       manifestUrl: 'https://svp8.github.io/tgApp/tonconnect-manifest.json',
       buttonRootId: 'ton-connect'
     });
-
+    console.log(window.Telegram.WebApp)
     async function connectToWallet() {
       const connectedWallet = await tonConnectUI.connectWallet();
       // Do something with connectedWallet if needed
